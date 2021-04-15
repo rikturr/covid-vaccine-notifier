@@ -31,7 +31,7 @@ def load_data(state):
 
 @task
 def available_appts(df, current_coords, distance_miles=None, filters=None):
-    close_df = df[df.appointments_available == True]
+    close_df = df[(df.appointments_available == True) & df.appointments]
     close_df['distance_miles'] = close_df['coordinates'].apply(
         lambda x: haversine.haversine(x, current_coords, unit=Unit.MILES)
     )
